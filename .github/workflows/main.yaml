@@ -10,27 +10,36 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  empaquetar:
+    runs-on: self-hosted
+    steps:
+      - run: echo "build step"
+
+  pruebas-unitarias:
     runs-on: self-hosted
     steps:
       - run: echo "build step"
 
   test:
     runs-on: self-hosted
+    needs: [empaquetar,pruebas-unitarias]
     steps:
       - run: echo "test step"
 
   qa:
     runs-on: self-hosted
+    needs: [empaquetar,pruebas-unitarias]
     steps:
       - run: echo "qa step"
 
   release:
     runs-on: self-hosted
+    needs: [empaquetar,pruebas-unitarias]
     steps:
       - run: echo "release step"
 
   deploy:
     runs-on: self-hosted
+    needs: [empaquetar,pruebas-unitarias]
     steps:
       - run: echo "deploy step"
