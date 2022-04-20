@@ -13,6 +13,8 @@ jobs:
   empaquetar:
     runs-on: self-hosted
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.3
       - name: build
         run: mvn package -DskipTests=true 
         
