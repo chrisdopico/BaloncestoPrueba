@@ -13,7 +13,9 @@ jobs:
   empaquetar:
     runs-on: self-hosted
     steps:
-      - run: echo "build step"
+      - name: build
+        run: mvn package -DskipTests=true 
+        
 
   pruebas-unitarias:
     runs-on: self-hosted
