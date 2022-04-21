@@ -48,20 +48,20 @@ jobs:
       - run: mvn failsafe:integration-test failsafe:verify
 
 
-  qa:
-    runs-on: self-hosted
-    needs: empaquetar
-    steps:
-      - run: echo "qa step"
+  #qa:
+    #runs-on: self-hosted
+    #needs: empaquetar
+    #steps:
+      #- run: echo "qa step"
 
-  release:
-    runs-on: self-hosted
-    needs: empaquetar
-    steps:
-      - run: echo "release step"
+  #release:
+    #runs-on: self-hosted
+    #needs: empaquetar
+    #steps:
+      #- run: echo "release step"
 
-  deploy:
-    runs-on: self-hosted
-    needs: empaquetar
-    steps:
-      - run: echo "deploy step"
+  #deploy:
+    #runs-on: self-hosted
+    #needs: empaquetar
+    #steps:
+      #- run: echo "deploy step"
