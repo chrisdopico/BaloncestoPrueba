@@ -45,7 +45,7 @@ jobs:
       - run: export DATABASE_PASS="clave"
       - run: sh /usr/local/tomcat/bin/catalina.sh stop
       - run: sh /usr/local/tomcat/bin/catalina.sh start
-      - run: mvn failsafe:integration-test failsafe:verify
+      #- run: mvn failsafe:integration-test failsafe:verify
 
 
   #qa:
