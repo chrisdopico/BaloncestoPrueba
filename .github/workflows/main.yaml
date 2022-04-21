@@ -45,18 +45,18 @@ jobs:
 
   qa:
     runs-on: self-hosted
-    needs: pruebas-funcionales
+    needs: empaquetar
     steps:
       - run: echo "qa step"
 
   release:
     runs-on: self-hosted
-    needs: qa
+    needs: empaquetar
     steps:
       - run: echo "release step"
 
   deploy:
     runs-on: self-hosted
-    needs: release
+    needs: empaquetar
     steps:
       - run: echo "deploy step"
