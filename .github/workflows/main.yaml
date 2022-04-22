@@ -43,7 +43,8 @@ jobs:
       - run: export DATABASE_NAME="baloncesto"
       - run: export DATABASE_USER="usuario"
       - run: export DATABASE_PASS="clave"
-      #- run: sh /usr/local/tomcat/bin/catalina.sh stop
+      - run: sh /usr/local/tomcat/bin/catalina.sh stop
+      - run: sleep 5
       - run: sh /usr/local/tomcat/bin/catalina.sh start
       #- run: mvn failsafe:integration-test failsafe:verify
 
