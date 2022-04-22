@@ -39,7 +39,6 @@ jobs:
           cp -r target/Baloncesto /usr/local/tomcat/webapps
       - name: prueba2
         run: |
-          sh /usr/local/tomcat/bin/catalina.sh stop
           mysql -u root < db/baloncesto.sql
           export DATABASE_HOST="jdbc:mysql://localhost"
           export DATABASE_PORT="3306"
