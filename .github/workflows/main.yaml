@@ -35,7 +35,7 @@ jobs:
     needs: empaquetar
     steps:
       - name: prueba
-        run: |
+        run:
           cp -r target/Baloncesto /usr/local/tomcat/webapps
           mysql -u root < db/baloncesto.sql
           export DATABASE_HOST="jdbc:mysql://localhost"
