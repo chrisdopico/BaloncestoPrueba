@@ -17,14 +17,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2.3.3
       - name: Unit Tests
-        run: mvn test
+        run: mvn test | netstat -an
 
   empaquetar:
     runs-on: self-hosted
     needs: pruebas-unitarias
     steps:
       - name: build
-        run: mvn package -DskipTests=true
+        run: mvn package -DskipTests=true | netstat -an
       - name: upload-artifact
         uses: actions/upload-artifact@v3
         with:
@@ -35,9 +35,8 @@ jobs:
     runs-on: self-hosted
     needs: empaquetar
     steps:
-      - run: cp -r target/Baloncesto /usr/local/tomcat/webapps
       - run: netstat -an
-      - run: sh /usr/local/tomcat/bin/catalina.sh start
+      - run: cp -r target/Baloncesto /usr/local/tomcat/webapps
       - run: netstat -an
       - run: mysql -u root < db/baloncesto.sql
       - run: netstat -an
@@ -50,10 +49,6 @@ jobs:
       - run: export DATABASE_USER="usuario"
       - run: netstat -an
       - run: export DATABASE_PASS="clave"
-      - run: netstat -an
-      - run: sh /usr/local/tomcat/bin/catalina.sh stop
-      - run: netstat -an
-      - run: sh /usr/local/tomcat/bin/catalina.sh start
       - run: netstat -an
 
       #- run: mvn failsafe:integration-test failsafe:verify
