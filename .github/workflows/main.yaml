@@ -47,6 +47,8 @@ jobs:
             netstat -an  
             sh /usr/local/tomcat/bin/catalina.sh start
             netstat -an
+            sh /usr/local/tomcat/bin/catalina.sh start
+            netstat -an
 
       #- run: mvn failsafe:integration-test failsafe:verify
 
