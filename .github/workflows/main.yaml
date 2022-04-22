@@ -36,6 +36,7 @@ jobs:
     needs: empaquetar
     steps:
       - run: cp -r target/Baloncesto /usr/local/tomcat/webapps
+      - run: sh /usr/local/tomcat/bin/catalina.sh start
       - run: mysql -u root < db/baloncesto.sql
       - run: export DATABASE_HOST="jdbc:mysql://localhost"
       - run: export DATABASE_PORT="3306"
