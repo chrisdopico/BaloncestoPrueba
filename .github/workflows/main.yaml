@@ -43,7 +43,7 @@ jobs:
       - run: export DATABASE_PASS="clave"
       - run: netstat -an
       - run:  | 
-            sh /usr/local/tomcat/bin/catalina.sh start
+            sh /usr/local/tomcat/bin/catalina.sh stop
             sh /usr/local/tomcat/bin/catalina.sh start
             netstat -an
 
