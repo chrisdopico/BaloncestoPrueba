@@ -40,8 +40,10 @@ jobs:
       - run: export DATABASE_PORT="3306"
       - run: export DATABASE_NAME="baloncesto"
       - run: export DATABASE_USER="usuario"
-      - run: export DATABASE_PASS="clave"
-      - run: echo "$DATABASE_PASS"
+      - run: | 
+          export DATABASE_PASS="clave"
+          echo "$DATABASE_PASS"
+          
       - run: netstat -an
       - run: sh /usr/local/tomcat/bin/catalina.sh stop
       - run: netstat -an
