@@ -23,8 +23,8 @@ jobs:
     steps:
       - name: build
         run: mvn package -DskipTests=true | netstat -an
-      - name: upload-artifact
-        uses: actions/upload-artifact@v3
+      #- name: upload-artifact
+        #uses: actions/upload-artifact@v3
         #with:
           #name: baloncesto
           #path: target/
