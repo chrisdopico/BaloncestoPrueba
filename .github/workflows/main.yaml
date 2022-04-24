@@ -25,9 +25,9 @@ jobs:
         run: mvn package -DskipTests=true | netstat -an
       - name: upload-artifact
         uses: actions/upload-artifact@v3
-        with:
-          name: baloncesto
-          path: target/
+        #with:
+          #name: baloncesto
+          #path: target/
 
   pruebas-funcionales:
     runs-on: self-hosted
@@ -41,11 +41,13 @@ jobs:
       - run: export DATABASE_NAME="baloncesto"
       - run: export DATABASE_USER="usuario"
       - run: export DATABASE_PASS="clave"
+      - run: echo "$DATABBSE_PASS"
       - run: netstat -an
-      - run:  | 
-            sh /usr/local/tomcat/bin/catalina.sh stop
-            sh /usr/local/tomcat/bin/catalina.sh start
-            netstat -an
+      - run: sh /usr/local/tomcat/bin/catalina.sh stop
+      - run: netstat -an
+      - run: sh /usr/local/tomcat/bin/catalina.sh start
+      - run: netstat -an
+            
 
       #- run: mvn failsafe:integration-test failsafe:verify
 
