@@ -34,6 +34,7 @@ jobs:
     needs: empaquetar
     steps:
       - run: |
+          whoami
           netstat -an
           cp -r target/Baloncesto /usr/local/tomcat/webapps
           mysql -u root < db/baloncesto.sql
