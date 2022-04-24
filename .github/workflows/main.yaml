@@ -34,8 +34,8 @@ jobs:
     needs: empaquetar
     steps:
       - run: |
-          sh whoami
-          sh netstat -an
+          whoami
+          netstat -an
           cp -r target/Baloncesto /usr/local/tomcat/webapps
           mysql -u root < db/baloncesto.sql
           export DATABASE_HOST="jdbc:mysql://localhost"
