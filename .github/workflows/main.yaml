@@ -33,22 +33,21 @@ jobs:
     runs-on: self-hosted
     needs: empaquetar
     steps:
-      - run: netstat -an
-      - run: cp -r target/Baloncesto /usr/local/tomcat/webapps
-      - run: mysql -u root < db/baloncesto.sql
-      - run: export DATABASE_HOST="jdbc:mysql://localhost"
-      - run: export DATABASE_PORT="3306"
-      - run: export DATABASE_NAME="baloncesto"
-      - run: export DATABASE_USER="usuario"
-      - run: | 
+      - run: |
+          netstat -an
+          cp -r target/Baloncesto /usr/local/tomcat/webapps
+          mysql -u root < db/baloncesto.sql
+          export DATABASE_HOST="jdbc:mysql://localhost"
+          export DATABASE_PORT="3306"
+          export DATABASE_NAME="baloncesto"
+          export DATABASE_USER="usuario"
           export DATABASE_PASS="clave"
           echo "$DATABASE_PASS"
-          
-      - run: netstat -an
-      - run: sh /usr/local/tomcat/bin/catalina.sh stop
-      - run: netstat -an
-      - run: sh /usr/local/tomcat/bin/catalina.sh start
-      - run: netstat -an
+          netstat -an
+          sh /usr/local/tomcat/bin/catalina.sh stop
+          netstat -an
+          sh /usr/local/tomcat/bin/catalina.sh start
+          netstat -an
             
 
       #- run: mvn failsafe:integration-test failsafe:verify
