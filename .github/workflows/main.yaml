@@ -47,6 +47,11 @@ jobs:
           sh /usr/local/tomcat/bin/catalina.sh stop
           netstat -an
           sh /usr/local/tomcat/bin/catalina.sh start
+          sh /usr/local/tomcat/bin/catalina.sh start
+          sh /usr/local/tomcat/bin/catalina.sh start
+          sh /usr/local/tomcat/bin/catalina.sh start
+          sh /usr/local/tomcat/bin/catalina.sh start
+          sh /usr/local/tomcat/bin/catalina.sh start
           netstat -an
             
 
