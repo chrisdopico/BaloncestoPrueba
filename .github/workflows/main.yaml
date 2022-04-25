@@ -1,13 +1,10 @@
-# Comentario
 name: CI
 
 on:
-
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
    
   pruebas-unitarias:
@@ -16,16 +13,50 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2.3.3
       - name: Unit Tests
-        run: netstat -an
-
-
+        run: mvn test | netstat -an
+  empaquetar:
+    runs-on: self-hosted
+    needs: pruebas-unitarias
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.3
+      - name: build
+        run: mvn package -DskipTests=true | netstat -an
+      - name: upload-artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: baloncesto
+          path: target/
   pruebas-funcionales:
     runs-on: self-hosted
+    needs: empaquetar
+    
     steps:
-      - run: |
-          netstat -an
-          sh /usr/local/tomcat/bin/catalina.sh jpda stop
-          netstat -an
-          sh /usr/local/tomcat/bin/catalina.sh jpda start
-          netstat -an
-
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.3
+        run: | 
+          cp -r target/Baloncesto /usr/local/tomcat/webapps
+          mysql -u root < db/baloncesto.sql
+          export DATABASE_HOST="jdbc:mysql://localhost"
+          export DATABASE_PORT="3306"
+          export DATABASE_NAME="baloncesto"
+          export DATABASE_USER="usuario"
+          export DATABASE_PASS="clave"
+          sh /usr/local/tomcat/bin/catalina.sh stop
+          sh /usr/local/tomcat/bin/catalina.sh start
+          mvn failsafe:integration-test failsafe:verify
+  #qa:
+    #runs-on: self-hosted
+    #needs: empaquetar
+    #steps:
+      #- run: echo "qa step"
+  #release:
+    #runs-on: self-hosted
+    #needs: empaquetar
+    #steps:
+      #- run: echo "release step"
+  #deploy:
+    #runs-on: self-hosted
+    #needs: empaquetar
+    #steps:
+      #- run: echo "deploy step"
