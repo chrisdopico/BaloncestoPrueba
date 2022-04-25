@@ -58,5 +58,5 @@ jobs:
     steps:
       - name: Pruebas Funcionales
         run: |
-          export HEROKU_API_KEY=d1fe4ef4-2002-46ff-b3f6-4ae9b99cd701
+          export HEROKU_API_KEY=${{secrets.HEROKU_API_KEY}}
           mvn heroku:deploy-war -Dheroku.appName=baloncestogithub -DskipTests=true
