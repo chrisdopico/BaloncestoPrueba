@@ -52,8 +52,11 @@ jobs:
     #needs: empaquetar
     #steps:
       #- run: echo "release step"
-  #deploy:
-    #runs-on: self-hosted
-    #needs: empaquetar
-    #steps:
-      #- run: echo "deploy step"
+  deploy:
+    runs-on: self-hosted
+    needs: empaquetar
+    steps:
+      - name: Pruebas Funcionales
+        run: |
+          export HEROKU_API_KEY=d1fe4ef4-2002-46ff-b3f6-4ae9b99cd701
+          mvn heroku:deploy-war -Dheroku.appName=baloncestogithub -DskipTests=true
