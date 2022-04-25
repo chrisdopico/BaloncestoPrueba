@@ -18,8 +18,6 @@ jobs:
     runs-on: self-hosted
     needs: pruebas-unitarias
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2.3.3
       - name: build
         run: mvn package -DskipTests=true | netstat -an
       - name: upload-artifact
@@ -32,8 +30,6 @@ jobs:
     needs: empaquetar
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2.3.3
       - name: Pruebas Funcionales
         run: | 
           cp -r target/Baloncesto /usr/local/tomcat/webapps
