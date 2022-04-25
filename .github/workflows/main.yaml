@@ -24,8 +24,8 @@ jobs:
     steps:
       - run: |
           netstat -an
-          sh /usr/local/tomcat/bin/catalina.sh stop
+          sh /usr/local/tomcat/bin/catalina.sh jpda stop
           netstat -an
-          sh /usr/local/tomcat/bin/catalina.sh start
+          sh /usr/local/tomcat/bin/catalina.sh jpda start
           netstat -an
 
